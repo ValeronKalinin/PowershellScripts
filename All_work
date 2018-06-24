@@ -1,0 +1,13 @@
+# Выборка непустых журналов
+$date=(get-date).AddHours(-1)
+$LogJournals = Get-Winevent  -listlog * |  Where-Object {($_.RecordCount -ge 1)}
+
+# Выборка сообщений Warning и Error не старше часа
+foreach ($LogJournal in $LogJournals) 
+
+{
+             
+    $ln=$LogJournal.LogName.ToString()
+    (Get-WinEvent -ErrorAction  SilentlyContinue -FilterHashtable @{ LogName=$ln;  StartTime=$date ; level=1,2,3} )
+  
+}
