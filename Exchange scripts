@@ -1,0 +1,14 @@
+#Подключение к Ексченджу
+$UserCredential = Get-Credential
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://exchange.domain.ru/powershell -Authentication Kerberos -Credential $UserCredential
+Import-PSSession $Session
+
+#Поиск месаджтрекинг логов
+Get-ExchangeServer | %{Get-MessageTrackingLog -server $_.name -Start "06/19/2018 20:40:00"`
+-Recipients "email@domain.ru" -EventId "receive" -ResultSize unlimited`
+|select EventId,timestamp, Source,Sender,Recipients, MessageSubject, MessageId |ft  }
+
+#Поиск и восстановление писем за последний месяц
+Search-Mailbox -Identity postmaster -SearchQuery 'received:"this month"' -EstimateResultOnly 
+Search-Mailbox -Identity postmaster -SearchQuery 'received:"this month"'  -TargetMailbox "Email@domain.ru" -TargetFolder "postmaster"
+
