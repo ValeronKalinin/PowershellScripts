@@ -1,0 +1,194 @@
+
+Title: CZJ82703BT
+URL: 10.200.204.153
+Password: ?6T.eZC|4$]!y4hx
+Default Login: iload
+Default Pass: PWT5A7S2
+Tag: 38277
+
+
+Title: CZJ82703BV
+URL: 10.200.204.150
+Password: tRm_U*kQJx6-T2M[
+Default Login: iload
+Default Pass: CVVWBC3R
+Tag: 38278
+
+
+Title: CZJ82703BW
+URL: 10.200.206.83
+Password: C8Q@Cn*H93tY/y)7
+Default Login: iload
+Default Pass: EUQ8VV7Z
+Tag: 38279
+
+
+Title: CZJ82701JF
+URL: 10.200.204.143
+Password: 0HU8tEM(/6/>aG6U
+Default Login: iload
+Default Pass: 6SNDQMPB
+Tag: 38268
+
+
+Title: CZJ82701JG
+URL: 10.200.204.145
+Password: gu7Cy6YnC{lGPWBH
+Default Login: iload
+Default Pass: WCHBUFVY
+Tag: 38269
+
+
+Title: CZJ82701JH
+URL: 10.200.204.148
+Password: aSBs}I1XvY2pslFu
+Default Login: iload
+Default Pass: CNV69NJ2
+Tag: 38270
+
+
+Title: CZJ82701JJ
+URL: 10.200.204.151
+Password: i[D-#lakn(#]KTik
+Default Login: iload
+Default Pass: 26FG7VFG
+Tag: 38271
+
+
+Title: CZJ82701JK
+URL: 10.200.206.70
+Password: :IZ:BZ)^Z)EQ5!b3
+Default Login: iload
+Default Pass: 9Y2TJZRF
+Tag: 38272
+
+
+Title: CZJ82701JL
+URL: 10.200.204.144
+Password: ki!SnT76&ltD^j2t
+Default Login: iload
+Default Pass: 67SMH9PH
+Tag: 38273
+
+
+Title: CZJ82701JM
+URL: 10.200.204.152
+Password: 5cDLhGI>b-:s!0u6
+Default Login: iload
+Default Pass: C5E4NNQD
+Tag: 38274
+
+
+Title: CZJ82701JN
+URL: 10.200.204.147
+Password: TZF&_R&?-tu4OxD]
+Default Login: iload
+Default Pass: H2N9338A
+Tag: 38274
+
+
+Title: CZJ82701JP
+URL: 10.200.204.156
+Password: ozb[t[AVMR=iHnRc
+Default Login: iload
+Default Pass: FVYREWV7
+Tag: 38274
+
+
+Title: CZJ82703BX
+URL: 10.200.204.139
+Password: @euALc=jLsH>Vbp%
+Default Login: iload
+Default Pass: W7AWT8JB
+Tag: 
+
+
+Title: CZJ82703BY
+URL: 10.200.204.138
+Password: ii+Et2ho}H^[)g5p
+Default Login: iload
+Default Pass: Y9X2384Z
+Tag: 
+
+
+Title: CZJ82703BZ
+URL: 10.200.204.140
+Password: :4.:%N&if82JzsGa
+Default Login: iload
+Default Pass: 2EYCP2NM
+Tag: 
+
+
+Title: CZJ82701JQ
+URL: 10.200.204.135
+Password: 9hd/.HBw9lC&rDoD
+Default Login: iload
+Default Pass: 66G2T9H8
+Tag: 
+
+
+Title: CZJ82701JR
+URL: 10.200.204.142
+Password: KBl9-Yj4(w;N@9Xo
+Default Login: iload
+Default Pass: C478XXBM
+Tag: 
+
+
+Title: CZJ82701JS
+URL: 10.200.204.132
+Password: hq8U_nZO[{)gv:gy
+Default Login: iload
+Default Pass: 3JRXU9W5
+Tag: 
+
+
+Title: CZJ82701JT
+URL: 10.200.204.133
+Password: A>.F^q;#OS;]*})t
+Default Login: iload
+Default Pass: WAASXVM9
+Tag: 
+
+
+Title: CZJ82701JV
+URL: 10.200.204.137
+Password: #wQMs^XCmBa)*BLa
+Default Login: iload
+Default Pass: 68V8JB5
+Tag: 
+
+
+Title: CZJ82701JW
+URL: 10.200.204.136
+Password: GcEvjdqkPCOZtTmy
+Default Login: iload
+Default Pass: 96CUYYDZ
+Tag: 
+
+
+Title: CZJ82701JX
+URL: 10.200.204.141
+Password: 9uGD0zB2$iMrNxCT
+Default Login: iload
+Default Pass: ARBN73N9
+Tag: 
+
+
+Title: CZJ82701JY
+URL: 10.200.206.85
+Password: -R%hy5{lo1$Y@Gi6
+Default Login: iload
+Default Pass: QWRRB4UZ
+Tag: 
+
+
+Title: CZJ82701JZ
+URL: 10.200.206.69
+Password: N$>Lu5i=m+--i!82
+Default Login: iload
+Default Pass: 5NXYZRFD
+Tag: 
+
+
+

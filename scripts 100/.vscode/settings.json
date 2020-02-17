@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "C:\\Program Files\\pypy3.6-v7.1.1-win32\\pypy3.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.linting.enabled": false
+}

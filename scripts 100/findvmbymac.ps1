@@ -1,0 +1,21 @@
+﻿Get-PowerCLIConfiguration
+Set-PowerCLIConfiguration -InvalidCertificateAction ignore -confirm:$false
+
+$Cloudcred=Get-Credential
+$cred=Get-Credential
+Connect-VIServer -Credential $cred -Server cloud.orglot.office, cloud2.orglot.office
+#Connect-VIServer -Credential ($cred) -Server idf-vc.orglot.office, board-vc.orglot.office, board-prod-vc.orglot.office, sas-vc.orglot.office
+
+$vms=Get-vm
+
+foreach ($vm in $vms) 
+
+{
+$mac=$null
+$mac=($vm|Get-NetworkAdapter | where MacAddress -Like "00:50:56:af:cc:b0"| select *)
+
+if ($mac -ne $null){
+$vm
+$mac
+    }    
+} 
