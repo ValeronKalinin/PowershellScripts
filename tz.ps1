@@ -43,7 +43,7 @@ $i=0
 
  {
  
-  $data=$data.Remove($i-1,$i)
+  $data=$data.Remove($i-1,$i+1)
   #$data
   $i=0
  }
