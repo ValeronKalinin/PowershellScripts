@@ -42,9 +42,8 @@ $i=0
  if($data[$i] -like ")" -and $data[$i-1] -like "(")
 
  {
- 
-  $data=$data.Remove($i-1,$i+1)
-  #$data
+  Write-Host "$data $i"  
+  $data=$data.Remove($i-1,2)
   $i=0
  }
 
