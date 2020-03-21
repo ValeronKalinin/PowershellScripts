@@ -1,5 +1,9 @@
 #Запуск секундомера
 $Timer = [System.Diagnostics.Stopwatch]::StartNew()
+$Timer1 = [System.Diagnostics.Stopwatch]::StartNew()
+$Timer.Start()
+
+#$tempObj = New-Object psobject
 #Хэштаблица для хранения  пар TRAN_ID - время
 $table = @{ } 
 #Храним обработанные данные по каждой секунде
@@ -10,30 +14,31 @@ $Data = @()
 $seconds = $null
 
 # Файл  лога который будем парсить
-$Path_in="C:\latency\Equalizer_0.2020031610.log"
+$Path_in="C:\Users\vk\Desktop\eq\ineq.txt"
 #Файл вывода куда будем писать обработанные данные
-$Path_out="C:\latency\latency.csv"
-
+$Path_out="C:\Users\vk\Desktop\eq\inEQ.out"
 
 $reader = [System.IO.File]::OpenText($Path_in)
 while (!($reader.EndOfStream)) {
+   
     #Читаем строку
     $line = $reader.ReadLine()
-    
-    $time = $line.split(";")[0]
-    #$testID=(($line.split(";").split(",") | Select-String -Pattern "TRAN_ID") -split ":")[1]
-    $testID = $line.split(" ")[2].split(";")[0]
-    $seconds_now = $time.split(".")[0].split(":")[2] 
 
-    # Когда кончается секунда считаем данные (среднее, медиану, 99 перцентиль, максимум, количество)
-    <#
+        $direction =    $line.split(":")[2].Split(";")[-1]
+        $time = $line.split(";")[0]
+        $TRAN_ID = $line.split(" ")[2].split(";")[0]
+        $seconds_now = $time.split(".")[0].split(":")[2] 
+        
+        # Когда кончается секунда считаем данные (среднее, медиану, 99 перцентиль, максимум, количество)
+        
     if ($seconds -ne $seconds_now -and $seconds -ne $null) {
-        $tempObj = New-Object psobject
-        #$tempObj=@{}
+        
+        
+        
+        $tempObj=@{}
         $summ = $null 
         # Максимальная задержка в МИКРОСЕКУНДАХ
         $max = 0 
-
         foreach ($r in $result.Values) {
                 
             if ($max -lt $r) { $max = $r }
@@ -44,74 +49,50 @@ while (!($reader.EndOfStream)) {
         $count = $result.Count 
         # Средняя задержка в МИКРОСЕКУНДАХ                      
         $average = [math]::Round(($summ / $count), 2)    
-
         # Считаем медиану
         $Mediandata = $result.Values | sort
-        if ($count % 2) {
-
-            $MedianValue = $Mediandata[[math]::Floor($count / 2)]
-
-        }
-
-        else {
-               
-            $MedianValue = ($Mediandata[$Count / 2], $Mediandata[$count / 2 - 1] | measure -Average).average
-        } 
+        $MedianValue = $Mediandata[[math]::Round($count / 100 * 50)]
 
         # 99 процентиль
         $P99 = $null
         $P99 = $Mediandata[[math]::Round($count / 100 * 99)]
             
-        # Собираем строку отчета
-        $tempObj | Add-Member -MemberType NoteProperty -name  "Time" -Value $line.split(";")[0].split(".")[0]
-        $tempObj | Add-Member -MemberType NoteProperty -name  "Average" -Value $average 
-        $tempObj | Add-Member -MemberType NoteProperty -name  "Median" -Value $MedianValue
-        $tempObj | Add-Member -MemberType NoteProperty -name  "P99" -Value $P99
-        $tempObj | Add-Member -MemberType NoteProperty -name  "Count" -Value $count
-        $tempObj | Add-Member -MemberType NoteProperty -name  "Max" -Value $max 
+        # Собираем строку отчет�
         
-        ##$tempObj["Time"]=$line.split(";")[0].split(".")[0]
-        ##$tempObj["Average"]=$average 
-        ##$tempObj["Median"]=$MedianValue 
-        ##$tempObj["P99"]=$P99
-        ##$tempObj["Count"]=$count
-        ##$tempObj["Max"]=$max
-
-
-
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "Time" -Value $line.split(";")[0].split(".")[0] -Force
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "Average" -Value $average  -Force
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "Median" -Value $MedianValue -Force
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "P99" -Value $P99 -Force
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "Count" -Value $count -Force
+         Add-Member -InputObject $tempObj -MemberType NoteProperty -name  "Max" -Value $max  -Force
+         
         # сохраняем строку отчета
         $Data += $tempObj 
+
         $result = @{ }
-
+        
+        $Timer2.Stop()
+        write-host $Timer2.Elapsed  
         # Таймер для анализа скорости обработки 1 секунды лога
-        #$Timer.Stop()
-        #write-host $Timer.Elapsed
-        #$Timer = [System.Diagnostics.Stopwatch]::StartNew()
-        #$Timer.Start()
-
-    }#>
-    
-    if ($null -ne $testID) {
-    
-        $TRAN_ID = $line.split(" ")[2].split(";")[0]
+        $Timer2 = [System.Diagnostics.Stopwatch]::StartNew()
+        $Timer2.Start()   
     }
-
-    else { $TRAN_ID = $null }
+       
     
-
     # В этой секции я пишу в Хештаблицу данные если нашел строку INPUT
-    if ( $line.Contains("INPUT") -eq $true) {
-    
-        $table[$TRAN_ID.trim()] = $time.Trim()
-                
+    if ( $direction -eq "INPUT") {
+        
+        $table[$TRAN_ID] = $time      
     }
     
-    # В этой секции если нашел строку OUTPUT 
-    if ($line.Contains("OUTPUT") -eq $true ) {    
-            
-        $tstart = $table[$TRAN_ID.trim()]
+   
+    if ($direction -eq "OUTPUT" -and $table[$TRAN_ID]) {    
+        
 
-        if ($tstart -ne $null) {
+        $tstart = $table[$TRAN_ID]
+
+        #if ($tstart -ne $null) {
+            
             $tfinish = $time 
                 
             #  Считаем задержку
@@ -121,14 +102,18 @@ while (!($reader.EndOfStream)) {
             $result[$tstart] = $latency
                 
             # Раскоментировать для проверки глазами 
-            write-host $testID " " $table.($TRAN_ID.trim()) " "  $time 
+            #write-host $testID " " $table.($TRAN_ID.trim()) " "  $time 
                 
             #Удаляю из Хештаблицы запись
-            $table.Remove($TRAN_ID.trim())
-        }
+            if($maxtablecount -le $table.Count) {$maxtablecount=$table.Count}
+
+            $table.Remove($TRAN_ID)
     
     }
-        
+     
     $seconds = $seconds_now
-        
+    
+#}   
 }
+$Timer.Stop()
+write-host $Timer.Elapsed $Data.count $maxtablecount
